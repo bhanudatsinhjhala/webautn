@@ -66,9 +66,9 @@ function login() {
 }
 
 function parseAuthData(data) {
-  let buffer = new ArrayBuffer(data);
-  console.log(buffer);
-  let byteArray = new Uint8Array(buffer);
+  // let buffer = new ArrayBuffer(data);
+  // console.log(buffer);
+  let byteArray = new Uint8Array(data);
   console.log(byteArray);
   let charArray = Array.from(byteArray, (byte) => String.fromCharCode(byte));
   console.log(charArray);
