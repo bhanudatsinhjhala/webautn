@@ -34,6 +34,10 @@ navigator.credentials
       "ClientDataJSON: ",
       bufferToString.decode(newCredentialInfo.response.clientDataJSON)
     );
+    let attestationObject = CBOR.decode(
+      newCredentialInfo.response.attestationObject
+    );
+    console.log("AttestationObject: ", attestationObject);
     login();
   })
   .catch((error) => {
