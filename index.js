@@ -27,7 +27,7 @@ navigator.credentials
   .create({ publicKey: publicKey })
   .then((newCredentialInfo) => {
     console.log("SUCCESS", newCredentialInfo);
-    sessionStorage.setItems(
+    sessionStorage.setItem(
       "newCredentialInfo",
       JSON.stringify(newCredentialInfo)
     );
