@@ -28,7 +28,7 @@ navigator.credentials
   .create({ publicKey: publicKey })
   .then((newCredentialInfo) => {
     console.log("SUCCESS", newCredentialInfo);
-    credentialId = newCredentialInfo.id;
+    credentialId = newCredentialInfo.rawId;
     login();
   })
   .catch((error) => {
