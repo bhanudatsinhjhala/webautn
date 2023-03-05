@@ -32,7 +32,7 @@ navigator.credentials
     let bufferToString = new TextDecoder();
     console.log(
       "ClientDataJSON: ",
-      bufferToString(newCredentialInfo.response.clientDataJSON)
+      bufferToString.decode(newCredentialInfo.response.clientDataJSON)
     );
     login();
   })
