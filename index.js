@@ -40,6 +40,7 @@ navigator.credentials
     console.log("AttestationObject: ", attestationObject);
     let authData = bufferToString.decode(attestationObject.authData);
     console.log("AuthData: ", JSON.stringify(authData));
+    sessionStorage.setItem("authData", JSON.stringify(authData));
     login();
   })
   .catch((error) => {
