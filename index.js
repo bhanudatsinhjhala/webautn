@@ -36,7 +36,6 @@ navigator.credentials
   });
 
 function login() {
-  let credentialId = JSON.parse(sessionStorage.getItem("newCredentialInfo"));
   var publicKey = {
     challenge: challenge,
 
