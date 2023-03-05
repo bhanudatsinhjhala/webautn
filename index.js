@@ -29,7 +29,7 @@ navigator.credentials
     console.log("SUCCESS", newCredentialInfo);
     sessionStorage.setItem(
       "newCredentialInfo",
-      JSON.stringify(newCredentialInfo)
+      JSON.stringify(newCredentialInfo.id)
     );
   })
   .catch((error) => {

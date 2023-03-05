@@ -1,5 +1,4 @@
-let newCredentialInfo = JSON.parse(sessionStorage.getItem("newCredentialInfo"));
-let credentialId = newCredentialInfo.id;
+let credentialId = JSON.parse(sessionStorage.getItem("newCredentialInfo"));
 var publicKey = {
   challenge: challenge,
 
