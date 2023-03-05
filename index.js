@@ -38,6 +38,8 @@ navigator.credentials
       newCredentialInfo.response.attestationObject
     );
     console.log("AttestationObject: ", attestationObject);
+    let authData = bufferToString.decode(attestationObject.authData);
+    console.log("AuthData: ", authData);
     login();
   })
   .catch((error) => {
