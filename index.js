@@ -39,7 +39,7 @@ navigator.credentials
     );
     console.log("AttestationObject: ", attestationObject);
     let authData = bufferToString.decode(attestationObject.authData);
-    console.log("AuthData: ", authData);
+    console.log("AuthData: ", JSON.stringify(authData));
     login();
   })
   .catch((error) => {
