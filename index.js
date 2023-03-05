@@ -29,6 +29,11 @@ navigator.credentials
   .then((newCredentialInfo) => {
     console.log("SUCCESS", newCredentialInfo);
     credentialId = newCredentialInfo.rawId;
+    let bufferToString = new TextDecoder();
+    console.log(
+      "ClientDataJSON: ",
+      bufferToString(newCredentialInfo.response.clientDataJSON)
+    );
     login();
   })
   .catch((error) => {
