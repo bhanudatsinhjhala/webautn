@@ -39,8 +39,8 @@ navigator.credentials
     );
     console.log("AttestationObject: ", attestationObject);
     let authData = bufferToString.decode(attestationObject.authData);
-    console.log("AuthData: ", JSON.stringify(authData));
-    sessionStorage.setItem("authData", JSON.stringify(authData));
+    console.log("AuthData: ", parseAuthData(authData));
+    sessionStorage.setItem("authData", parseAuthData(authData));
     login();
   })
   .catch((error) => {
@@ -63,4 +63,12 @@ function login() {
       alert("Open your browser console!");
       console.log("FAIL", error);
     });
+}
+
+function parseAuthData(data) {
+  let buffer = data.arrayBuffer();
+  let byteArray = new Uint8Array(buffer);
+  let charArray = Array.from(byteArray, (byte) => String.fromCharCode(byte));
+  const binaryString = charArray.join("");
+  return binaryString;
 }
