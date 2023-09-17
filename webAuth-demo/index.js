@@ -1,3 +1,20 @@
+const signup = async (publicKeyCredential) => {
+  console.log(
+    "🚀 ~ file: index.js:2 ~ signup ~ publicKeyCredential:",
+    publicKeyCredential,
+    typeof publicKeyCredential
+  );
+  const response = await fetch("http://192.168.230.91:8443/api/signup", {
+    method: "POST",
+    // mode: "cors",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+    body: JSON.stringify(publicKeyCredential),
+  });
+  console.log("🚀 ~ file: api.js:8 ~ signup ~ response:", response);
+};
+
 var challenge = new Uint8Array(32);
 window.crypto.getRandomValues(challenge);
 
@@ -28,6 +45,15 @@ navigator.credentials
   .create({ publicKey: publicKey })
   .then((newCredentialInfo) => {
     console.log("SUCCESS", newCredentialInfo);
+    signup({
+      publicKeyCredential: {
+        authenticateAttachement: newCredentialInfo.authenticateAttachement,
+        id: newCredentialInfo.id,
+        rawId: newCredentialInfo.rawId,
+        response: newCredentialInfo.response,
+        type: newCredentialInfo.type,
+      },
+    });
     credentialId = newCredentialInfo.rawId;
     let bufferToString = new TextDecoder();
     console.log(
@@ -41,7 +67,7 @@ navigator.credentials
     let authData = bufferToString.decode(attestationObject.authData);
     console.log("AuthData: ", parseAuthData(authData));
     sessionStorage.setItem("authData", parseAuthData(authData));
-    login();
+    // login();
   })
   .catch((error) => {
     console.log("FAIL", error);
