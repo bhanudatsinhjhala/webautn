@@ -4,7 +4,7 @@ const signup = async (publicKeyCredential) => {
     publicKeyCredential,
     typeof publicKeyCredential
   );
-  const response = await fetch("http://192.168.230.91:8443/api/signup", {
+  const response = await fetch("http://localhost:8443/api/signup", {
     method: "POST",
     // mode: "cors",
     headers: {
