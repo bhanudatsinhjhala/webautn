@@ -4,14 +4,17 @@ const signup = async (publicKeyCredential) => {
     publicKeyCredential,
     typeof publicKeyCredential
   );
-  const response = await fetch("http://localhost:8443/api/signup", {
-    method: "POST",
-    // mode: "cors",
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-    body: JSON.stringify(publicKeyCredential),
-  });
+  const response = await fetch(
+    "https://5fe6-2401-4900-563e-7e07-817e-dd0c-a4e5-601c.ngrok-free.app/api/signup",
+    {
+      method: "POST",
+      // mode: "cors",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify(publicKeyCredential),
+    }
+  );
   console.log("🚀 ~ file: api.js:8 ~ signup ~ response:", response);
 };
 
