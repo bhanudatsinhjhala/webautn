@@ -4,7 +4,7 @@ const signup = async (publicKeyCredential) => {
     publicKeyCredential,
     typeof publicKeyCredential
   );
-  const bodyData = new formData();
+  const bodyData = new FormData();
   bodyData.append(
     "authenticatorAttachement",
     JSON.stringify(publicKeyCredential.authenticatorAttachement)
