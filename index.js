@@ -4,6 +4,23 @@ const signup = async (publicKeyCredential) => {
     publicKeyCredential,
     typeof publicKeyCredential
   );
+  const formData = new formData();
+  formData.append(
+    "authenticatorAttachement",
+    JSON.stringify(publicKeyCredential.authenticatorAttachement)
+  );
+  formData.append("id", JSON.stringify(publicKeyCredential.id));
+  formData.append("rawId", new Blob(publicKeyCredential.rawId));
+  formData.append(
+    "attestationObject",
+    new Blob(publicKeyCredential.response.attestationObject)
+  );
+  formData.append(
+    "clientDataJSON",
+    new Blob(publicKeyCredential.response.clientDataJSON)
+  );
+  formData.append("type", new Blob(publicKeyCredential.response.type));
+
   const response = await fetch(
     "https://5fe6-2401-4900-563e-7e07-817e-dd0c-a4e5-601c.ngrok-free.app/api/signup",
     {
@@ -12,7 +29,7 @@ const signup = async (publicKeyCredential) => {
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
-      body: JSON.stringify(publicKeyCredential),
+      body: formData,
     }
   );
   console.log("🚀 ~ file: api.js:8 ~ signup ~ response:", response);
@@ -48,15 +65,7 @@ navigator.credentials
   .create({ publicKey: publicKey })
   .then((newCredentialInfo) => {
     console.log("SUCCESS", newCredentialInfo);
-    signup({
-      publicKeyCredential: {
-        authenticateAttachement: newCredentialInfo.authenticateAttachement,
-        id: newCredentialInfo.id,
-        rawId: newCredentialInfo.rawId,
-        response: newCredentialInfo.response,
-        type: newCredentialInfo.type,
-      },
-    });
+    signup(newCredentialInfo);
     credentialId = newCredentialInfo.rawId;
     let bufferToString = new TextDecoder();
     console.log(
