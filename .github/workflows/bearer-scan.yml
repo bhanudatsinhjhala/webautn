@@ -11,11 +11,21 @@ jobs:
   rule_check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Review Dog installation
+        uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
       - name: Bearer
         uses: bearer/bearer-action@v2
         with:
+          format: rdjson
+          output: rd.json
           diff: true
-          with:
-          config-file: 'bearer.yml'
-          skip-path: 'index.html'
+      - name: Run reviewdog
+        if: always()
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cat rd.json | reviewdog -f=rdjson -reporter=github-pr-review
