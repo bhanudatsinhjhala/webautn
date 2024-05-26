@@ -3,7 +3,7 @@ report:
   # Specify report format (json, yaml, sarif, gitlab-sast)
   format: 'json'
   # Specify the output path for the report.
-  output: 'bearer/security-scan.json'
+  output: ''
   # Specify the type of report (security, privacy, dataflow).
   report: security
   # Specify which severities are included in the report as a comma separated string

@@ -17,5 +17,4 @@ jobs:
         with:
           diff: true
           with:
-          config-file: 'bearer.yml'
           skip-path: 'index.html'
