@@ -71,4 +71,4 @@ function parseAuthData(data) {
   console.log(binaryString);
   return binaryString;
 }
-console.log('this is a password hash - $2lkjbfehfbweiyguv');
+console.log('this is a password hash - $2lkjbfehfbweiyguv', process.env);
